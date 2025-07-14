@@ -1,7 +1,7 @@
 # How to build a package of your tool 
 notes and codes about how to build a conda package
 
-# First you need to install two packages
+# Install build
 
 ```bash
 pip install build # to build the tar file - source code
