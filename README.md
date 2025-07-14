@@ -87,7 +87,9 @@ Create a GitHub Release
 
 Install `conda-build`
 
-```bash 
+```bash
+conda create -n conda-build
+conda activate conda-build
 conda install -c conda-forge -c defaults conda-build conda-verify
 mamba install boa -c conda-forge
 ```
