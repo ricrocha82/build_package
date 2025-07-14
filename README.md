@@ -4,6 +4,8 @@ notes and codes about how to build a conda package
 # Install build
 
 ```bash
+conda create -n conda-build
+conda activate conda-build
 pip install build # to build the tar file - source code
 ```
 
@@ -88,8 +90,6 @@ Create a GitHub Release
 Install `conda-build`
 
 ```bash
-conda create -n conda-build
-conda activate conda-build
 conda install -c conda-forge -c defaults conda-build conda-verify
 mamba install boa -c conda-forge
 ```
