@@ -162,7 +162,7 @@ Run
 conda build recipe --source
 # build the recipe using the meta.yaml file
 cd path/to/project_root
-conda build recipe -c bioconda -c conda-forge -c defaults 
+# conda build recipe -c bioconda -c conda-forge -c defaults 
 # or
 conda mambabuild recipe -c bioconda -c conda-forge -c defaults # fastar using boa
 ```
