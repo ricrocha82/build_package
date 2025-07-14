@@ -1,5 +1,5 @@
-# How to build a package of your tool 
-notes and codes about how to build a conda package
+# How to build a package for your tool 
+Notes and codes about how to build a conda package
 
 # Install build
 
@@ -58,16 +58,16 @@ cd path/to/package
 
 python -m build --sdist
 
-# after building get the sha256 by runinng
+# after building, get the sha256 by running
 sha256sum .../[package-name]-0.1.0.tar.gz
 # it will give you the YOUR_CALCULATED_SHA256_HASH
 ```
 
 If the code ran successfully, it will create a file: [project-name]-[version].tar.gz
 
-# Upload to the GitHub
+# Upload to GitHub
 
-If you want to distribute your build artifacts on the GitHub, first create a Git tag
+If you want to distribute your build artifacts on GitHub, first create a Git tag
 
 ```bash
 git tag v0.1.0
@@ -164,7 +164,7 @@ conda build recipe --source
 cd path/to/project_root
 # conda build recipe -c bioconda -c conda-forge -c defaults 
 # or
-conda mambabuild recipe -c bioconda -c conda-forge -c defaults # fastar using boa
+conda mambabuild recipe -c bioconda -c conda-forge -c defaults # faster using boa
 ```
 If all goes well, it creates a conda package (`.tar.bz2` or `.conda`)
 
@@ -180,8 +180,8 @@ mamba install -c local -c bioconda -c conda-forge [package-name] --yes # MAMBA i
 
 ### adding to bioconda
 
-1. Fork the Bioconda repository: go the [Bioconda Github page](https://github.com/bioconda/bioconda-recipes) and fork the repository. 
-2. Create a new branch in the main branch. 
+1. Fork the Bioconda repository: go to the [Bioconda Github page](https://github.com/bioconda/bioconda-recipes) and fork the repository. 
+2. Create a new branch from the main branch. 
 3. Add the `meta.yaml` file 
 4. Submit a pull request to Bioconda
 5. Address review comments
