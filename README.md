@@ -7,7 +7,7 @@ notes and codes about how to build a conda package
 pip install build # to build the tar file - source code
 ```
 
-This code will use the `pyproject.toml` file which needs to something like that.
+This code will use the `pyproject.toml` file, which needs to be something like that.
 This file should be in the root directory
 
 ```bash
@@ -18,9 +18,9 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "[package-name]"
 version = "0.1.0"
-description = "A comprehensive toolkit for ssDNA virus analysis"
+description = "My tool is awesome !!!"
 authors = [
-    {name = "Pavan R. & Tisza M.", email = "pavan.4@osu.edu"}
+    {name = "Pavan R.", email = "pavan@my_company"}
 ]
 readme = "README.md"
 requires-python = ">=3.10"
@@ -30,14 +30,12 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    "biopython",
     "pandas",
     "matplotlib",
     "seaborn",
     "numpy",
     "gffutils",
-    "click",
-    "viennarna",
+    "click"
 ]
 
 [project.urls]
@@ -45,13 +43,13 @@ Homepage = "https://github.com/ricrocha82/[package-name]"
 Repository = "https://github.com/ricrocha82/[package-name]"
 
 [project.scripts]
-cressent = "cressent_core.cli:cli"
+my_tool = "my_tool_core.cli:cli"
 
 [tool.setuptools]
-packages = ["cressent_core"]
+packages = ["my_tool_core"]
 ```
 
-To execyte the command go to directory and run:
+To execute the command, go to the  directory and run:
 
 ```bash
 cd path/to/package
@@ -63,18 +61,18 @@ sha256sum .../[package-name]-0.1.0.tar.gz
 # it will give you the YOUR_CALCULATED_SHA256_HASH
 ```
 
-If the code ran successfully it will create a file: [project-name]-[version].tar.gz
+If the code ran successfully, it will create a file: [project-name]-[version].tar.gz
 
-# Upload to the Github
+# Upload to the GitHub
 
-If you want to distribute your build artifacts on the Github, furst create a Git tag
+If you want to distribute your build artifacts on the GitHub, first create a Git tag
 
 ```bash
 git tag v0.1.0
 git push origin v0.1.0
 ```
 
-Create a Github Release
+Create a GitHub Release
 
 1. Go to your repo on GitHub
 2. Click "Releases" → "Draft a new release"
@@ -97,7 +95,7 @@ mamba install boa -c conda-forge
 Create a `meta.yaml file` in a new folder called `recipe`
 ```bash
 # simple examples
-{% set name = "cressent" %}
+{% set name = "my_tool" %}
 {% set version = "0.1.0" %}
 
 package:
@@ -121,7 +119,7 @@ build:
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps -vv
   entry_points:
-    - cressent = cressent_core.cli:cli
+    - my_tool = my_tool_core.cli:cli
   noarch: python
 
 requirements:
@@ -139,15 +137,15 @@ requirements:
 
 test:
   imports:
-    - cressent_core
+    - my_tool_core
   commands:
-    - cressent --help
+    - my_tool --help
 
 about:
   home: https://github.com/ricrocha82/[package-name]
   license: MIT
   license_family: MIT
-  summary: A comprehensive toolkit for ssDNA virus analysis
+  summary: This tool is awesome
   doc_url: https://github.com/ricrocha82/[package-name]
   dev_url: https://github.com/ricrocha82/[package-name]
 
@@ -174,7 +172,7 @@ It will be located at `conda-bld/noarch/[packa-name]-[version]-py_0.tar.bz2/.con
 # Test installation
 conda create -n test-[package-name]
 conda activate test-[package-name]
-mamba install -c local -c bioconda -c conda-forge [package-name] --yes # faster and deal better with dependencies
+mamba install -c local -c bioconda -c conda-forge [package-name] --yes # MAMBA is faster and deals better with dependencies
 [package-name] --help
 ```
 
