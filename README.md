@@ -232,11 +232,37 @@ git push origin add-cressent
 6. Open a Pull Request
 Go to your fork on GitHub → click Compare & pull request (PR) → submit PR to bioconda/bioconda-recipes.
 
-Bioconda maintainers will review, build, and merge it.
+Follow the guidelines:
+- Use an appropriate title starting with “Add” (e.g., “Add cressent version 1.1.0”).
+- Include a description summarizing your changes.
+- Ensure you have followed the Bioconda Recipe Guidelines.
 
-7. After Merge
+Request reviews:
+
+Once your PR is passing all CI tests, issue the Bot command:
+```bash
+@BiocondaBot please add label
+```
+
+This helps the maintainers know your PR is ready for review.
+
+7. Address CI feedback and mergePermalink
+
+a) Monitor CI:
+
+Your PR will trigger automated tests and lint checks. If there are any errors (e.g., missing run_exports, long summary warnings), address them by updating your recipe and pushing new commits.
+
+b) Merge:
+
+Once all checks pass and the maintainers have reviewed your PR, you can merge it. Note that Bioconda now prefers squash & merge, so make sure to combine your commits appropriately.
+
+8. After Merge
 Once merged, within hours, your package will be available on Bioconda.
 Users can install with:
 ```bash
+Your package will be built and uploaded automatically to the Bioconda channel.
+Users can install your package using:
+conda config --add channels conda-forge
+conda config --add channels bioconda
 mamba create -n cressent -c conda-forge -c bioconda cressent
 ```
