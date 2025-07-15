@@ -99,6 +99,11 @@ Install `conda-build`
 ```bash
 conda install -c conda-forge -c defaults conda-build conda-verify
 mamba install boa -c conda-forge
+
+git clone https://github.com/bioconda/bioconda-utils.git
+cd bioconda-utils
+conda install --file bioconda_utils/bioconda_utils-requirements.txt -c conda-forge -c bioconda 
+python setup.py install
 ```
 
 Create a `meta.yaml file` in a new folder called `recipe`
@@ -186,10 +191,45 @@ mamba install -c local -c bioconda -c conda-forge [package-name] --yes # MAMBA i
 ```
 
 ### adding to bioconda
+1. Clone Bioconda-recipes repository
+```bash
+git clone https://github.com/bioconda/bioconda-recipes.git
+cd bioconda-recipes
+```
+2. Add Your Recipe
+Inside `bioconda-recipes/recipes`:
+```bash
+mkdir cressent
+cp /path/to/your/recipe/meta.yaml cressent/
+# If you have a build.sh (not needed for noarch: python), copy it too:
+# cp /path/to/your/recipe/build.sh cressent/
+```
+3. Test the Recipe Locally
+From the root of `bioconda-recipes`:
+```bash
+bioconda-utils build recipes config.yml --packages cressent --docker --mulled-test
+```
+4. Lint (check formatting & requirements)
+```bash
+bioconda-utils lint recipes config.yml --packages cressent
+```
+5. Commit and Push to Your Fork
+Fork the `bioconda-recipes` repo on GitHub first, then:
+```bash
+git checkout -b add-cressent
+git add recipes/cressent
+git commit -m "Add cressent: a toolkit for ssDNA virus analysis"
+git push origin add-cressent
+```
 
-1. Fork the Bioconda repository: go to the [Bioconda Github page](https://github.com/bioconda/bioconda-recipes) and fork the repository. 
-2. Create a new branch from the main branch. 
-3. Add the `meta.yaml` file 
-4. Submit a pull request to Bioconda
-5. Address review comments
+6. Open a Pull Request
+Go to your fork on GitHub → click Compare & pull request → submit PR to bioconda/bioconda-recipes.
 
+Bioconda maintainers will review, build, and merge it.
+
+7. After Merge
+Once merged, within hours your package will be available on Bioconda.
+Users can install with:
+```bash
+mamba create -n cressent -c conda-forge -c bioconda cressent
+```
