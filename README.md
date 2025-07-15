@@ -135,6 +135,8 @@ build:
   entry_points:
     - my_tool = my_tool_core.cli:cli
   noarch: python
+  run_exports:
+    - 
 
 requirements:
   host:
