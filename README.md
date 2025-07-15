@@ -67,7 +67,7 @@ sha256sum .../[package-name]-0.1.0.tar.gz
 # it will give you the YOUR_CALCULATED_SHA256_HASH
 
 # Upload the archives
-python3 -m twine upload --repository testpypi dist/*
+twine upload dist/*
 ```
 
 If the code ran successfully, it will create a file: [project-name]-[version].tar.gz
