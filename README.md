@@ -136,7 +136,7 @@ build:
     - my_tool = my_tool_core.cli:cli
   noarch: python
   run_exports:
-    - 
+    - {{ pin_subpackage("cressent", max_pin="x.x") }}
 
 requirements:
   host:
@@ -260,9 +260,5 @@ Once all checks pass and the maintainers have reviewed your PR, you can merge it
 Once merged, within hours, your package will be available on Bioconda.
 Users can install with:
 ```bash
-Your package will be built and uploaded automatically to the Bioconda channel.
-Users can install your package using:
-conda config --add channels conda-forge
-conda config --add channels bioconda
 mamba create -n cressent -c conda-forge -c bioconda cressent
 ```
