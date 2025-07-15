@@ -193,9 +193,15 @@ mamba install -c local -c bioconda -c conda-forge [package-name] --yes # MAMBA i
 ```
 
 ### adding to bioconda
+
+Fork the `bioconda-recipes` repo on GitHub first,
+
+Go to bioconda/bioconda-recipes and click “Fork” to create a copy under your GitHub account.
+
+then:
 1. Clone Bioconda-recipes repository
 ```bash
-git clone https://github.com/bioconda/bioconda-recipes.git
+git clone https://github.com/ricrocha82/bioconda-recipes.git
 cd bioconda-recipes
 ```
 2. Add Your Recipe
@@ -216,21 +222,20 @@ bioconda-utils build recipes config.yml --packages cressent --docker --mulled-te
 bioconda-utils lint recipes config.yml --packages cressent
 ```
 5. Commit and Push to Your Fork
-Fork the `bioconda-recipes` repo on GitHub first, then:
 ```bash
 git checkout -b add-cressent
 git add recipes/cressent
-git commit -m "Add cressent: a toolkit for ssDNA virus analysis"
+git commit -m "Add cressent version 1.0.0"
 git push origin add-cressent
 ```
 
 6. Open a Pull Request
-Go to your fork on GitHub → click Compare & pull request → submit PR to bioconda/bioconda-recipes.
+Go to your fork on GitHub → click Compare & pull request (PR) → submit PR to bioconda/bioconda-recipes.
 
 Bioconda maintainers will review, build, and merge it.
 
 7. After Merge
-Once merged, within hours your package will be available on Bioconda.
+Once merged, within hours, your package will be available on Bioconda.
 Users can install with:
 ```bash
 mamba create -n cressent -c conda-forge -c bioconda cressent
