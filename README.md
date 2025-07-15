@@ -3,10 +3,14 @@ Notes and codes about how to build a conda package
 
 # Install build
 
+## 1. Submit to PyPi
+
 ```bash
+cd path/to/
 conda create -n conda-build
 conda activate conda-build
-pip install build # to build the tar file - source code
+python3 -m pip install --upgrade build # to build the tar file - source code
+python3 -m pip install --upgrade twine # to sento to PyPi
 ```
 
 This code will use the `pyproject.toml` file, which needs to be something like that.
@@ -56,11 +60,14 @@ To execute the command, go to the  directory and run:
 ```bash
 cd path/to/package
 
-python -m build --sdist
+python -m build
 
 # after building, get the sha256 by running
 sha256sum .../[package-name]-0.1.0.tar.gz
 # it will give you the YOUR_CALCULATED_SHA256_HASH
+
+# Upload the archives
+python3 -m twine upload --repository testpypi dist/*
 ```
 
 If the code ran successfully, it will create a file: [project-name]-[version].tar.gz
