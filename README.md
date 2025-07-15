@@ -196,7 +196,7 @@ mamba install -c local -c bioconda -c conda-forge [package-name] --yes # MAMBA i
 
 Fork the `bioconda-recipes` repo on GitHub first,
 
-Go to bioconda/bioconda-recipes and click “Fork” to create a copy under your GitHub account.
+Go to [bioconda/bioconda-recipes](https://github.com/bioconda/bioconda-recipes) and click “Fork” to create a copy under your GitHub account.
 
 then:
 1. Clone Bioconda-recipes repository
@@ -230,6 +230,7 @@ git push origin add-cressent
 ```
 
 6. Open a Pull Request
+   
 Go to your fork on GitHub → click Compare & pull request (PR) → submit PR to bioconda/bioconda-recipes.
 
 Follow the guidelines:
@@ -243,10 +244,9 @@ Once your PR is passing all CI tests, issue the Bot command:
 ```bash
 @BiocondaBot please add label
 ```
-
 This helps the maintainers know your PR is ready for review.
 
-7. Address CI feedback and mergePermalink
+7. Address CI feedback and merge
 
 a) Monitor CI:
 
@@ -257,8 +257,10 @@ b) Merge:
 Once all checks pass and the maintainers have reviewed your PR, you can merge it. Note that Bioconda now prefers squash & merge, so make sure to combine your commits appropriately.
 
 8. After Merge
+
 Once merged, within hours, your package will be available on Bioconda.
-Users can install with:
+
+Now the users can install with:
 ```bash
 mamba create -n cressent -c conda-forge -c bioconda cressent
 ```
