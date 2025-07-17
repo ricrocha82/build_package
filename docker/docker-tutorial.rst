@@ -62,37 +62,24 @@ Part 2: Building the Docker Image
 .. code-block:: bash
 
    # Create Dockerfile in your project root
-   cat > Dockerfile << 'EOF'
-   FROM continuumio/miniconda3:latest
-
-   LABEL maintainer="Your Name (your.email@example.com)"
+   FROM mambaorg/micromamba:2.0.5
+   LABEL maintainer="Ricardo R. Pavan (pavan.4@osu.edu)"
    LABEL version="1.0.0"
    LABEL description="CRESSENT: A comprehensive toolkit for CRESS DNA virus analysis"
-   LABEL org.opencontainers.image.source="https://github.com/yourusername/yourproject"
-
-   # Install mamba for faster package management
-   RUN conda install -c conda-forge mamba -y
-
-   # Method 1: Install from bioconda (recommended)
-   RUN mamba install -y -c conda-forge -c bioconda cressent=1.0.0
-
-   # Method 2: Use local conda package (alternative)
-   # COPY dist/cressent-1.0.0-pyhdfd78af_0.tar.bz2 /tmp/
-   # RUN mamba install -y /tmp/cressent-1.0.0-pyhdfd78af_0.tar.bz2
-
-   # Clean up to reduce image size
-   RUN mamba clean --all --yes && \
-       rm -rf /var/lib/apt/lists/*
-
+   
+   # Install CRESSENT from bioconda
+   RUN micromamba install -y -c conda-forge -c bioconda cressent=1.0.0 && \
+       micromamba clean --all --yes
+   
    # Set working directory where user data will be mounted
    WORKDIR /app
-
+   
    # Set entrypoint to your tool
    ENTRYPOINT ["cressent"]
-
+   
    # Default command shows help
    CMD ["--help"]
-   EOF
+
 
 2.2 Build the Docker Image
 ---------------------------
